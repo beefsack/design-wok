@@ -3,6 +3,8 @@ DesignPig::Application.routes.draw do
 
   resources :designs
 
+  resources :users
+
   get "home/index"
 
   devise_for :users

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
          :token_authenticatable, :encryptable, :confirmable, :lockable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me,
+    :username
   # attr_accessible :title, :body
+  validates :username, :uniqueness => true, :length => { :minimum => 2 }
 end

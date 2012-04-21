@@ -41,3 +41,12 @@ gem 'jquery-rails'
 
 # Authentication
 gem 'devise'
+
+# Authorization
+gem 'cancan'
+
+# View helpers
+gem 'formtastic'
+
+# API
+gem 'rabl'
