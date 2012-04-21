@@ -1,4 +1,12 @@
 DesignPig::Application.routes.draw do
+  resources :design_files
+
+  resources :designs
+
+  get "home/index"
+
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

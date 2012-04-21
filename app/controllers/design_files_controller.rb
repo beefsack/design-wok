@@ -1,0 +1,2 @@
+class DesignFilesController < ApplicationController
+end
