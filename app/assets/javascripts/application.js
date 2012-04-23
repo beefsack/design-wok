@@ -10,6 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
 //= require_tree ../partials
+//= require angular-1.0.0rc6.js
+//= require app.js
+//= require services.js
+//= require controllers.js
+//= require filters.js
+//= require directives.js
