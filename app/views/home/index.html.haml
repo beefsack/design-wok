@@ -10,9 +10,9 @@
         Logged in as {{username}}
         %a{ 'ng:click' => 'logOut()' } Log out
       %div#session-login-register{ 'ng:hide' => 'isLoggedIn' }
-        %form{ 'ng-submit' => 'logIn(username, password)' }
-          %label{ :for => 'session-login-username' } Username
-          %input#session-login-username{ 'ng:model' => 'username' }
+        %form{ 'ng-submit' => 'logIn(email, password)' }
+          %label{ :for => 'session-login-email' } Email
+          %input#session-login-email{ 'ng:model' => 'email' }
           %label{ :for => 'session-login-password' } Password
           %input#session-login-password{ :type => 'password', 'ng:model' => 'password' }
           %input{ :type => 'submit', :value => 'Log in' }

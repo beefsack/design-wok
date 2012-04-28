@@ -6,6 +6,7 @@ angular.module('designPig', [
   'designPig.services'
   'designPig.directives'
 ]).config(['$routeProvider', ($routeProvider) ->
+  # Routes
   $routeProvider.when '/view1',
     template: 'assets/partial1.html'
     controller: MyCtrl1
@@ -14,4 +15,17 @@ angular.module('designPig', [
     controller: MyCtrl2
   $routeProvider.otherwise
     redirectTo: '/view1'
+]).config(['$httpProvider', ($httpProvider) ->
+  # HTTP Auth
+  $httpProvider.responseInterceptors.push ($q) ->
+    return (promise) ->
+      return promise.then((response) ->
+        return response
+        # Success
+      , (response) ->
+        # Error
+        alert 'couldn\'t authenticate' if response.status is 401
+        return $q.reject(response);
+      )
+  return $httpProvider
 ])
