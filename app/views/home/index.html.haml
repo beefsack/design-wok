@@ -1,14 +1,23 @@
 !!!
-%html{'ng-app' => 'designPig'}
+%html{'ng-app' => 'designPig', 'xmlns:ng' => 'http://angularjs.org'}
   %head
     %title Design Pig
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
+    %div#session{ 'ng:controller' => 'SessionCtrl' }
+      %div#session-session{ 'ng:show' => 'isLoggedIn' } Logged in as fart
+      %div#session-login-register{ 'ng:hide' => 'isLoggedIn' }
+        %form{ 'ng-submit' => 'logIn(username, password)' }
+          %label{ :for => 'session-login-username' } Username
+          %input#session-login-username{ 'ng:model' => 'username' }
+          %label{ :for => 'session-login-password' } Password
+          %input#session-login-password{ :type => 'password', 'ng:model' => 'password' }
+          %input{ :type => 'submit', :value => 'Log in' }
     %ul
       %li
         %a{:href => '#/view1'} view1
       %li
         %a{:href => '#/view2'} view2
-    %div{'ng-view' => true}
+    %div{'ng:view' => true}
     = javascript_include_tag 'application'
