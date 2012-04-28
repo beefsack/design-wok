@@ -12,6 +12,7 @@
 //
 //= require_tree ../partials
 //= require angular-1.0.0rc6.js
+//= require base64.js
 //= require app.js
 //= require services.js
 //= require controllers.js

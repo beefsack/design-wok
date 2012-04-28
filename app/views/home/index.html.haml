@@ -7,7 +7,7 @@
   %body
     %div#session{ 'ng:controller' => 'SessionCtrl' }
       %div#session-session{ 'ng:show' => 'isLoggedIn' }
-        Logged in as fart
+        Logged in as {{username}}
         %a{ 'ng:click' => 'logOut()' } Log out
       %div#session-login-register{ 'ng:hide' => 'isLoggedIn' }
         %form{ 'ng-submit' => 'logIn(username, password)' }

@@ -5,6 +5,8 @@ DesignPig::Application.routes.draw do
 
   resources :designs
 
+  get 'users/me'
+
   resources :users
 
   devise_for :users

@@ -10,4 +10,7 @@ class User < ActiveRecord::Base
     :username
   # attr_accessible :title, :body
   validates :username, :uniqueness => true, :length => { :minimum => 2 }
+
+  # Make sure a token is created
+  before_save :ensure_authentication_token
 end

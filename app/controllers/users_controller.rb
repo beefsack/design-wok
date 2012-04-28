@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def me
+    raise 'not logged in' if current_user.nil?
+    @user = current_user
+  end
+
   def index
     @users = User.all
   end
