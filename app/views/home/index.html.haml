@@ -5,23 +5,23 @@
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
-    %div#session{ 'ng:controller' => 'SessionCtrl' }
+    %div#session{ 'ng-controller' => 'SessionCtrl' }
       %div
-        %a{ 'ng:click' => 'test()' } Test ajax
-      %div#session-session{ 'ng:show' => 'isLoggedIn' }
+        %a{ 'ng-click' => 'test()' } Test ajax
+      %div#session-session{ 'ng-show' => 'isLoggedIn' }
         Logged in as {{username}}
-        %a{ 'ng:click' => 'logOut()' } Log out
-      %div#session-login-register{ 'ng:hide' => 'isLoggedIn' }
+        %a{ 'ng-click' => 'logOut()' } Log out
+      %div#session-login-register{ 'ng-hide' => 'isLoggedIn' }
         %form{ 'ng-submit' => 'logIn(email, password)' }
           %label{ :for => 'session-login-email' } Email
-          %input#session-login-email{ 'ng:model' => 'email' }
+          %input#session-login-email{ 'ng-model' => 'email' }
           %label{ :for => 'session-login-password' } Password
-          %input#session-login-password{ :type => 'password', 'ng:model' => 'password' }
+          %input#session-login-password{ :type => 'password', 'ng-model' => 'password' }
           %input{ :type => 'submit', :value => 'Log in' }
     %ul
       %li
-        %a{:href => '#/view1'} view1
+        %a{:href => '#/discover'} discover designers
       %li
-        %a{:href => '#/view2'} view2
-    %div{'ng:view' => true}
+        %a{:href => '#/design'} sell designs
+    %div{'ng-view' => true}
     = javascript_include_tag 'application'

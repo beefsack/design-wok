@@ -1,9 +1,12 @@
 'use strict'
 
-class @MyCtrl1
+class @HomeCtrl
   $inject: []
 
-class @MyCtrl2
+class @DiscoverCtrl
+  $inject: []
+
+class @DesignCtrl
   $inject: []
 
 class @SessionCtrl

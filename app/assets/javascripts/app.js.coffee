@@ -7,14 +7,15 @@ angular.module('designPig', [
   'designPig.directives'
 ]).config(['$routeProvider', ($routeProvider) ->
   # Routes
-  $routeProvider.when '/view1',
-    template: 'assets/partial1.html'
-    controller: MyCtrl1
-  $routeProvider.when '/view2',
-    template: 'assets/partial2.html'
-    controller: MyCtrl2
+  $routeProvider.when '/discover',
+    template: 'assets/discover.html'
+    controller: DiscoverCtrl
+  $routeProvider.when '/design',
+    template: 'assets/design.html'
+    controller: DesignCtrl
   $routeProvider.otherwise
-    redirectTo: '/view1'
+    template: 'assets/home.html'
+    controller: HomeCtrl
 ]).config(['$httpProvider', ($httpProvider) ->
   # HTTP Auth
   $httpProvider.responseInterceptors.push ($q) ->
