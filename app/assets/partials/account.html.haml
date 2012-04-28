@@ -3,7 +3,7 @@
   %table{ :class => 'data-pair-table' }
     %tr
       %th username
-      %td {{username}}
+      %td{ 'ng-controller' => 'EditInPlaceCtrl', 'ng-include' => '"assets/edit_in_place.html"', 'ng-init' => 'field="username"' }
     %tr
       %th email
       %td{ 'ng-controller' => 'EditInPlaceCtrl', 'ng-include' => '"assets/edit_in_place.html"', 'ng-init' => 'field="email"' }

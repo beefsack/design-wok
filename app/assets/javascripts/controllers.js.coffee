@@ -13,18 +13,18 @@ class @EditInPlaceCtrl
   $inject: [ '$scope', '$http' ]
   constructor: ($scope, $http) ->
     $scope.editing = false
-    $scope.value = 'ww'
     $scope.edit = ->
       $scope.value = $scope.$parent[$scope.field]
       $scope.editing = true
-    $scope.save = ->
+    $scope.save = (value) ->
       data = {}
       data[$scope.$parent.updateApiRootNode] = {}
-      data[$scope.$parent.updateApiRootNode][$scope.field] = $scope.value
+      data[$scope.$parent.updateApiRootNode][$scope.field] = value
       $http.put($scope.$parent.updateApiUrl, data,
         headers:
           Authorization: SessionCtrl.basicAuthHeaderValue()
       ).success ->
+        $scope.$parent[$scope.field] = value
         $scope.cancel()
     $scope.cancel = ->
       $scope.editing = false

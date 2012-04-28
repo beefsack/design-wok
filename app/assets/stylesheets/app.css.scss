@@ -8,7 +8,11 @@
 
 }
 
-.edit-in-place:hover {
+.edit-in-place {
+  display: inline block;
+}
+
+.edit-in-place span:hover {
   cursor: pointer;
   background-color: yellow;
 }

@@ -1,4 +1,5 @@
-%span{ :class => 'edit-in-place', 'ng-hide' => 'editing', 'ng-click' => 'edit()' } {{$parent[field]}}
-%input{ 'ng-show' => 'editing', 'ng-model' => 'value' }
-%a{ 'ng-show' => 'editing', 'ng-click' => 'save()' } save
-%a{ 'ng-show' => 'editing', 'ng-click' => 'cancel()' } cancel
+%form{ :class => 'edit-in-place' }
+  %span{ 'ng-hide' => 'editing', 'ng-click' => 'edit()' } {{$parent[field]}}
+  %input{ 'ng-show' => 'editing', 'ng-model' => 'value' }
+  %input{ :type => 'submit', 'ng-show' => 'editing', 'ng-click' => 'save(value)', 'value' => 'save' }
+  %input{ :type => 'button', 'ng-show' => 'editing', 'ng-click' => 'cancel()', 'value' => 'cancel' }
