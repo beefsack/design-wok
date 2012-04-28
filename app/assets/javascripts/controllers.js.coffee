@@ -9,6 +9,47 @@ class @DiscoverCtrl
 class @DesignCtrl
   $inject: []
 
+class @EditInPlaceCtrl
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http) ->
+    $scope.editing = false
+    $scope.value = 'ww'
+    $scope.edit = ->
+      $scope.value = $scope.$parent[$scope.field]
+      $scope.editing = true
+    $scope.save = ->
+      data = {}
+      data[$scope.$parent.updateApiRootNode] = {}
+      data[$scope.$parent.updateApiRootNode][$scope.field] = $scope.value
+      $http.put($scope.$parent.updateApiUrl, data,
+        headers:
+          Authorization: SessionCtrl.basicAuthHeaderValue()
+      ).success ->
+        $scope.cancel()
+    $scope.cancel = ->
+      $scope.editing = false
+
+class @AccountCtrl
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http, $route) ->
+    $scope.loaded = false
+    $scope.updateApiRootNode = 'user'
+    $http.get("/users/me",
+      headers:
+        Authorization: SessionCtrl.basicAuthHeaderValue()
+    ).success (data) ->
+      $scope.username = data.user.username
+      $scope.email = data.user.email
+      $scope.loaded = true
+    $scope.$watch 'username', ->
+      $scope.updateApiUrl = "/users/#{$scope.username}"
+
+class @UserShowCtrl
+  $inject: [ '$scope', '$http', '$route' ]
+  constructor: ($scope, $http, $route) ->
+    $http.get("/users/#{$route.current.params.username}").success (data) ->
+      $scope.username = data.user.username
+
 class @SessionCtrl
   $inject: ['$scope', '$http', '$browser']
   constructor: ($scope, $http, $browser) ->
@@ -34,7 +75,7 @@ class @SessionCtrl
       $scope.password = undefined
       window.location.href = '/'
     $scope.test = ->
-      $http.get('/users',
+      $http.get('/users/testuser',
         headers:
           Authorization: SessionCtrl.basicAuthHeaderValue()
       ).success (data) ->

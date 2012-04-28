@@ -6,13 +6,18 @@ angular.module('designPig', [
   'designPig.services'
   'designPig.directives'
 ]).config(['$routeProvider', ($routeProvider) ->
-  # Routes
+  $routeProvider.when '/user/:username',
+    template: 'assets/user/show.html'
+    controller: UserShowCtrl
   $routeProvider.when '/discover',
     template: 'assets/discover.html'
     controller: DiscoverCtrl
   $routeProvider.when '/design',
     template: 'assets/design.html'
     controller: DesignCtrl
+  $routeProvider.when '/account',
+    template: 'assets/account.html'
+    controller: AccountCtrl
   $routeProvider.otherwise
     template: 'assets/home.html'
     controller: HomeCtrl

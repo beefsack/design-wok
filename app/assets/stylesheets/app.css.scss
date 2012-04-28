@@ -1,3 +1,14 @@
-.hidden {
-  display: none;
+.loading-placeholder {
+  &:before {
+    content: 'loading...'
+  }
+}
+
+.loading-placeholder-page {
+
+}
+
+.edit-in-place:hover {
+  cursor: pointer;
+  background-color: yellow;
 }

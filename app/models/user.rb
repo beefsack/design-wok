@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
 
   # Make sure a token is created
   before_save :ensure_authentication_token
+
+  def to_param
+    username
+  end
 end

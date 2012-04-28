@@ -1,0 +1,10 @@
+%div{ 'ng-show' => 'loaded' }
+  %h1 Account for {{username}}
+  %table{ :class => 'data-pair-table' }
+    %tr
+      %th username
+      %td {{username}}
+    %tr
+      %th email
+      %td{ 'ng-controller' => 'EditInPlaceCtrl', 'ng-include' => '"assets/edit_in_place.html"', 'ng-init' => 'field="email"' }
+%div{ 'ng-hide' => 'loaded', 'class' => 'loading-placeholder loading-placeholder-page' }
