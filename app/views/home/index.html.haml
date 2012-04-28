@@ -6,7 +6,9 @@
     = csrf_meta_tags
   %body
     %div#session{ 'ng:controller' => 'SessionCtrl' }
-      %div#session-session{ 'ng:show' => 'isLoggedIn' } Logged in as fart
+      %div#session-session{ 'ng:show' => 'isLoggedIn' }
+        Logged in as fart
+        %a{ 'ng:click' => 'logOut()' } Log out
       %div#session-login-register{ 'ng:hide' => 'isLoggedIn' }
         %form{ 'ng-submit' => 'logIn(username, password)' }
           %label{ :for => 'session-login-username' } Username

@@ -9,8 +9,11 @@ class @MyCtrl2
 class @SessionCtrl
   $inject: ['$scope', '$http']
   constructor: ($scope, $http) ->
-    $scope.logIn = (username, password) ->
-      alert "Loggin in as #{username} #{password}"
+    $scope.logIn = ->
+      $scope.usertoken = $scope.username
     $scope.logOut = ->
-      alert "Logout"
-    $scope.isLoggedIn = false
+      $scope.username = null
+      $scope.password = null
+      $scope.usertoken = null
+    $scope.$watch 'usertoken', ->
+      $scope.isLoggedIn = $scope.usertoken?
