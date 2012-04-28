@@ -21,6 +21,7 @@ class @SessionCtrl
         # Set local values
         $scope.username = data.user.username
         $scope.authentication_token = data.user.authentication_token
+        window.location.reload false
       )
     $scope.logOut = ->
       # Clear local values
@@ -28,6 +29,13 @@ class @SessionCtrl
       $scope.authentication_token = undefined
       $scope.email = undefined
       $scope.password = undefined
+      window.location.href = '/'
+    $scope.test = ->
+      $http.get('/users',
+        headers:
+          Authorization: SessionCtrl.basicAuthHeaderValue()
+      ).success (data) ->
+        console.log data
     # Set static values and cookie when scope values changes
     $scope.$watch 'username', ->
       SessionCtrl.username = $scope.username
@@ -40,3 +48,8 @@ class @SessionCtrl
     cookies = $browser.cookies()
     $scope.username = cookies.username
     $scope.authentication_token = cookies.authentication_token
+SessionCtrl.basicAuthHeaderValue = (username, password) ->
+  username = username || SessionCtrl.authentication_token || ''
+  password = password || ''
+  return null if username is '' and password is ''
+  'Basic ' + Base64.encode "#{username}:#{password}"
