@@ -3,7 +3,7 @@ class Design
   include Mongoid::Timestamps
 
   # Relations
-  referenced_in :designer, class_name: 'User', inverse_of: :designs
-  references_many :favourited_users, class_name: 'User', inverse_of: :favourited_designs
+  belongs_to :designer, class_name: 'User', inverse_of: :designs
+  has_many :favourited_users, class_name: 'User', inverse_of: :favourited_designs
   has_many :invoices
 end

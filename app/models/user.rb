@@ -43,7 +43,7 @@ class User
   field :authentication_token, :type => String
 
   # Fields
-  field :username, type: String
+  field :username, type: String, null: false
 
   # Validators
   validates :username, :uniqueness => true, :length => { :minimum => 2 }
@@ -52,11 +52,11 @@ class User
   before_save :ensure_authentication_token
 
   # Relations
-  references_many :designs, inverse_of: :designer
-  references_many :favourited_designs, class_name: 'Design', inverse_of: :favourited_users
-  references_many :authored_messages, class_name: 'Message', inverse_of: :author
-  references_many :messages, inverse_of: :target
-  references_many :invoices, inverse_of: :customer
+  has_many :designs, inverse_of: :designer
+  has_many :favourited_designs, class_name: 'Design', inverse_of: :favourited_users
+  has_many :sent_messages, class_name: 'Message', inverse_of: :sender
+  has_many :received_messages, class_name: 'Message', inverse_of: :receiver
+  has_many :invoices, inverse_of: :customer
 
   def to_param
     username

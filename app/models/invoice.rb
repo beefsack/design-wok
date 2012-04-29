@@ -5,5 +5,5 @@ class Invoice
   # Relations
   belongs_to :design
   has_many :design_files
-  referenced_in :customer, class_name: 'User', inverse_of: :invoices
+  belongs_to :customer, class_name: 'User', inverse_of: :invoices
 end
