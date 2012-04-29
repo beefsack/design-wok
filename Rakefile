@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-DesignPig::Application.load_tasks
+DesignWok::Application.load_tasks

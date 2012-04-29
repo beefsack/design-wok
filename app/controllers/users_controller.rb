@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by_username params[:id]
+    @user = User.first(conditions: { username: params[:id] })
   end
 
   def create
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_username params[:id]
+    @user = User.first(conditions: { username: params[:id] })
     if @user.update_attributes params[:user]
       render :action => 'show', :location => @user
     else
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find params[:id]
+    @user = User.first(conditions: { username: params[:id] })
     @user.destroy
     head :no_content
   end

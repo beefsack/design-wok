@@ -1,10 +1,10 @@
 'use strict'
 
 # Declare app level module which depends on filters, and services
-angular.module('designPig', [
-  'designPig.filters'
-  'designPig.services'
-  'designPig.directives'
+angular.module('designWok', [
+  'designWok.filters'
+  'designWok.services'
+  'designWok.directives'
 ]).config(['$routeProvider', ($routeProvider) ->
   $routeProvider.when '/user/:username',
     template: 'assets/user/show.html'

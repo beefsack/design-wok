@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module('designPig.filters', [])
+angular.module('designWok.filters', [])

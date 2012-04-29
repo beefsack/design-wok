@@ -1,4 +1,4 @@
-DesignPig::Application.routes.draw do
+DesignWok::Application.routes.draw do
   get "home/index"
 
   resources :design_files

@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module('designPig.directives', [])
+angular.module('designWok.directives', [])

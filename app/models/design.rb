@@ -1,3 +1,4 @@
-class Design < ActiveRecord::Base
-  # attr_accessible :title, :body
+class Design
+  include Mongoid::Document
+  include Mongoid::Timestamps
 end

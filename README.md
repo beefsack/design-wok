@@ -1,4 +1,4 @@
-design-pig
+design-wok
 ==========
 
 Connecting businesses with designers

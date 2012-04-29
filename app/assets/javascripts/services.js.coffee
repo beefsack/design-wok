@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module('designPig.services', [])
+angular.module('designWok.services', [])
