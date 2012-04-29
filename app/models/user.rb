@@ -51,6 +51,13 @@ class User
   # Make sure a token is created
   before_save :ensure_authentication_token
 
+  # Relations
+  references_many :designs, inverse_of: :designer
+  references_many :favourited_designs, class_name: 'Design', inverse_of: :favourited_users
+  references_many :authored_messages, class_name: 'Message', inverse_of: :author
+  references_many :messages, inverse_of: :target
+  references_many :invoices, inverse_of: :customer
+
   def to_param
     username
   end
