@@ -25,10 +25,9 @@ angular.module('designPig', [
   # HTTP Auth
   $httpProvider.responseInterceptors.push ($q) ->
     return (promise) ->
-      window.egg = promise
       return promise.then((response) ->
-        return response
         # Success
+        return response
       , (response) ->
         # Error
         alert 'couldn\'t authenticate' if response.status is 401

@@ -1,5 +1,5 @@
 !!!
-%html{'ng-app' => 'designPig', 'xmlns:ng' => 'http://angularjs.org'}
+%html{ :class => 'ng-app:designPig', :id => 'ng-app', 'ng-app' => 'designPig', 'xmlns:ng' => 'http://angularjs.org' }
   %head
     %title Design Pig
     = stylesheet_link_tag 'application', :media => 'all'
@@ -20,10 +20,10 @@
           %input{ :type => 'submit', :value => 'Log in' }
     %ul
       %li
-        %a{:href => '#/discover'} discover designers
+        %a{ :href => '#/discover' } discover designers
       %li
-        %a{:href => '#/design'} sell designs
+        %a{ :href => '#/design' } sell designs
       %li
         %a{ :href => '#/account' } my account
-    %div{'ng-view' => true}
+    %div{ 'ng-view' => true }
     = javascript_include_tag 'application'

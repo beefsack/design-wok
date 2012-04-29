@@ -49,3 +49,6 @@ gem 'cancan'
 
 # API
 gem 'rabl'
+
+# Thin webserver
+gem 'thin'
