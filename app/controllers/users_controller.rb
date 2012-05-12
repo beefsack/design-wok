@@ -39,5 +39,17 @@ class UsersController < ApplicationController
   def confirm
     @user = User.first conditions: {
       confirmation_token: params[:confirmation_token] }
+    if @user.nil?
+      render_errors({ full_messages: [ 'Unable to find confirmation token' ] })
+      return
+    end
+    unless @user.confirmed_at.nil?
+      render_errors({ full_messages: [ 'User has already been confirmed' ] })
+      return
+    end
+    @user.confirmed_at = Time.now
+    @user.save
+    current_user = @user
+    render controller: 'users', action: 'me'
   end
 end

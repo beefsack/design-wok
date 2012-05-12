@@ -6,6 +6,7 @@ DesignWok::Application.routes.draw do
   resources :designs
 
   get 'users/me'
+  post 'users/confirm'
 
   resources :users
 
