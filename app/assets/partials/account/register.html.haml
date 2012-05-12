@@ -1,34 +1,53 @@
-%h1
-  Register
-  %small Create an account to buy or sell designs
 %form.form-horizontal{ 'ng-submit' => 'register(user)' }
-  .control-group
-    %label.control-label{ :for => 'username' } Username
-    .controls
-      .input-prepend
-        %span.add-on
-          .icon-user
-        %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
-  .control-group
-    %label.control-label{ :for => 'email' } Email address
-    .controls
-      .input-prepend
-        %span.add-on
-          .icon-envelope
-        %input#email{ type: :email, 'ng-model' => 'user.email', required: true }
-  .control-group
-    %label.control-label{ :for => 'password' } Password
-    .controls
-      .input-prepend
-        %span.add-on
-          .icon-lock
-        %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
-  .control-group
-    %label.control-label{ :for => 'passwordConfirmation' } Password confirmation
-    .controls
-      .input-prepend
-        %span.add-on
-          .icon-lock
-        %input#passwordConfirmation{ type: :password, 'ng-model' => 'user.passwordConfirmation', required: true, 'ng-minlength' => 8 }
-  .form-actions
-    %input.btn.btn-primary{ type: :submit, value: 'Register now' }
+  .row-fluid.register-page-header
+    .span3
+    %h1.span6
+      Register
+      %small Create an account to buy or sell designs
+  .row-fluid
+    .register-user-types.span5
+      .register-user-type.well
+        .row-fluid{ 'ng-click' => 'user.type = "buyer"' }
+          .span1
+            %input{ type: :radio, 'ng-model' => 'user.type', value: 'buyer' }
+          .span11
+            %h2 I want to buy designs
+            I want to shop through pre-made designs, start design competitions, browse through designers' portfolios and contact a designers directly for custom work
+      .register-user-type.well
+        .row-fluid{ 'ng-click' => 'user.type = "designer"' }
+          .span1
+            %input{ type: :radio, 'ng-model' => 'user.type', value: 'designer' }
+          .span11
+            %h2 I am a designer
+            I want to create a portfolio to showcase my work, sell my current designs, enter competitions, and maybe let potential clients to contact me for custom work
+    .register-user-details.span7
+      .control-group
+        %label.control-label{ :for => 'username' } Username
+        .controls
+          .input-prepend
+            %span.add-on
+              .icon-user
+            %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
+      .control-group
+        %label.control-label{ :for => 'email' } Email address
+        .controls
+          .input-prepend
+            %span.add-on
+              .icon-envelope
+            %input#email{ type: :email, 'ng-model' => 'user.email', required: true }
+      .control-group
+        %label.control-label{ :for => 'password' } Password
+        .controls
+          .input-prepend
+            %span.add-on
+              .icon-lock
+            %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
+      .control-group
+        %label.control-label{ :for => 'passwordConfirmation' } Password confirmation
+        .controls
+          .input-prepend
+            %span.add-on
+              .icon-lock
+            %input#passwordConfirmation{ type: :password, 'ng-model' => 'user.passwordConfirmation', required: true, 'ng-minlength' => 8 }
+      .form-actions
+        %input.btn.btn-primary{ type: :submit, value: 'Register now' }
