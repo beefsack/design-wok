@@ -1,0 +1,3 @@
+%p= "Welcome #{@resource.email}!"
+%p You can confirm your account email through the link below:
+%p= link_to 'Confirm my account', url_for("/#/account/confirm/#{@resource.confirmation_token}")

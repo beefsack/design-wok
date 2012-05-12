@@ -57,9 +57,14 @@ class @AccountRegisterCtrl
         window.location.href = '#'
 
 class @AccountConfirmCtrl
-  $inject: [ '$scope', '$http' ]
-  constructor: ($scope, $http) ->
-    alert 'confirming'
+  $inject: [ '$scope', '$http', '$browser', '$route' ]
+  constructor: ($scope, $http, $browser, $route) ->
+    $http.post('/users/confirm', {
+      confirmation_token: $route.current.params.confirmationToken
+    }).success (data) ->
+      $browser.cookies 'username', data.user.username
+      $browser.cookies 'authentication_token', data.user.authentication_token
+      window.location.href = '/'
 
 class @UserShowCtrl
   $inject: [ '$scope', '$http', '$route' ]
@@ -78,12 +83,11 @@ class @SessionCtrl
       $http.get('/users/me'
         headers:
           Authorization: "Basic #{authString}"
-      ).success( (data) ->
+      ).success (data) ->
         # Set local values
         $scope.username = data.user.username
         $scope.authentication_token = data.user.authentication_token
         window.location.href = '#'
-      )
     $scope.logOut = ->
       # Clear local values
       $scope.username = undefined

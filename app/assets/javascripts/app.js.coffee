@@ -18,7 +18,7 @@ angular.module('designWok', [
   $routeProvider.when '/account/register',
     template: 'assets/account/register.html'
     controller: AccountRegisterCtrl
-  $routeProvider.when '/account/confirm',
+  $routeProvider.when '/account/confirm/:confirmationToken',
     template: 'assets/account/confirm.html'
     controller: AccountConfirmCtrl
   $routeProvider.when '/account',
