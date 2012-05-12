@@ -18,6 +18,9 @@ angular.module('designWok', [
   $routeProvider.when '/account/register',
     template: 'assets/account/register.html'
     controller: AccountRegisterCtrl
+  $routeProvider.when '/account/confirm',
+    template: 'assets/account/confirm.html'
+    controller: AccountConfirmCtrl
   $routeProvider.when '/account',
     template: 'assets/account.html'
     controller: AccountCtrl

@@ -35,4 +35,9 @@ class UsersController < ApplicationController
     @user.destroy
     head :no_content
   end
+
+  def confirm
+    @user = User.first conditions: {
+      confirmation_token: params[:confirmation_token] }
+  end
 end

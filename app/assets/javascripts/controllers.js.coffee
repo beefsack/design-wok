@@ -56,6 +56,11 @@ class @AccountRegisterCtrl
       ).success ->
         window.location.href = '#'
 
+class @AccountConfirmCtrl
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http) ->
+    alert 'confirming'
+
 class @UserShowCtrl
   $inject: [ '$scope', '$http', '$route' ]
   constructor: ($scope, $http, $route) ->

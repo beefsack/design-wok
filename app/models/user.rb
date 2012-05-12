@@ -46,7 +46,7 @@ class User
   field :username, type: String, null: false
 
   # Validators
-  validates :username, :uniqueness => true, :length => { :minimum => 2 }
+  validates :username, :uniqueness => true, :length => { :minimum => 8 }
 
   # Callbacks
   before_save :ensure_authentication_token
