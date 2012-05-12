@@ -5,24 +5,33 @@
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
-    %div#session{ 'ng-controller' => 'SessionCtrl' }
-      %div#session-session{ 'ng-show' => 'isLoggedIn' }
-        Logged in as {{username}}
-        %a{ 'ng-click' => 'logOut()' } Log out
-      %div#session-login-register{ 'ng-hide' => 'isLoggedIn' }
-        %form{ 'ng-submit' => 'logIn(email, password)' }
-          %label{ :for => 'session-login-email' } Email
-          %input#session-login-email{ 'ng-model' => 'email' }
-          %label{ :for => 'session-login-password' } Password
-          %input#session-login-password{ :type => 'password', 'ng-model' => 'password' }
-          %input{ :type => 'submit', :value => 'Log in' }
-        %a{ :href => '#/account/register'} Register
-    %ul
-      %li
-        %a{ :href => '#/discover' } discover designers
-      %li
-        %a{ :href => '#/design' } sell designs
-      %li
-        %a{ :href => '#/account' } my account
-    %div{ 'ng-view' => true }
+    -# Header
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container{ 'ng-controller' => 'SessionCtrl' }
+          %a.brand{ href: '#' } DesignWok
+          %ul.nav
+            %li
+              %a{ href: '#/discover' }
+                .icon-eye-open.icon-white
+                Discover designs
+            %li
+              %a{ href: '#/design' }
+                .icon-shopping-cart.icon-white
+                Sell designs
+          %ul.nav.pull-right{ 'ng-hide' => 'isLoggedIn' }
+            %li
+              %a{ href: '#/account/register' } or register
+          %form.navbar-form.pull-right{ 'ng-hide' => 'isLoggedIn', 'ng-submit' => 'logIn(email, password)' }
+            %input.span2{ 'ng-model' => 'email', placeholder: 'email' }
+            %input.span2{ 'ng-model' => 'password', type: 'password', placeholder: 'password' }
+            %input{ :type => 'submit', :value => 'Log in' }
+          %ul.nav.pull-right{ 'ng-show' => 'isLoggedIn' }
+            %li
+              %a{ href: '#/account' } My account
+            %li
+              %a{ 'ng-click' => 'logOut()' } Log out ({{username}})
+    -# Body
+    .container
+      %div{ 'ng-view' => true }
     = javascript_include_tag 'application'

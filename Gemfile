@@ -29,6 +29,10 @@ end
 gem 'jquery-rails'
 gem 'haml'
 
+# File uploads
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'rmagick'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

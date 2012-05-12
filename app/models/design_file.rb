@@ -3,6 +3,7 @@ class DesignFile
   include Mongoid::Timestamps
 
   # Fields
+  mount_uploader :file, DesignFileUploader
   
   # Relationships
   has_many :invoices

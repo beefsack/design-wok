@@ -1,15 +1,34 @@
-%h1 This is where you register an account.
-%form
-  %div
-    %label{ :for => 'username' } Username:
-    %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
-  %div
-    %label{ :for => 'email' } Email:
-    %input#username{ type: :email, 'ng-model' => 'user.email', required: true }
-  %div
-    %label{ :for => 'password' } Password:
-    %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
-  %div
-    %label{ :for => 'passwordRepeat' } Password again:
-    %input#passwordRepeat{ type: :password, 'ng-model' => 'user.passwordRepeat', required: true, 'ng-minlength' => 8 }
-  %input{ type: :submit, value: 'Register now', 'ng-click' => 'register(user)' }
+%h1
+  Register
+  %small Create an account to buy or sell designs
+%form.form-horizontal{ 'ng-submit' => 'register(user)' }
+  .control-group
+    %label.control-label{ :for => 'username' } Username
+    .controls
+      .input-prepend
+        %span.add-on
+          .icon-user
+        %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
+  .control-group
+    %label.control-label{ :for => 'email' } Email address
+    .controls
+      .input-prepend
+        %span.add-on
+          .icon-envelope
+        %input#email{ type: :email, 'ng-model' => 'user.email', required: true }
+  .control-group
+    %label.control-label{ :for => 'password' } Password
+    .controls
+      .input-prepend
+        %span.add-on
+          .icon-lock
+        %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
+  .control-group
+    %label.control-label{ :for => 'passwordConfirmation' } Password confirmation
+    .controls
+      .input-prepend
+        %span.add-on
+          .icon-lock
+        %input#passwordConfirmation{ type: :password, 'ng-model' => 'user.passwordConfirmation', required: true, 'ng-minlength' => 8 }
+  .form-actions
+    %input.btn.btn-primary{ type: :submit, value: 'Register now' }

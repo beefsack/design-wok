@@ -13,8 +13,9 @@
 //= require_tree ../partials
 //= require modernizr-2.5.3.js
 //= require jquery-1.7.2.js
-//= require angular-1.0.0rc7.js
 //= require base64.js
+//= require bootstrap.js
+//= require angular-1.0.0rc7.js
 //= require app.js
 //= require services.js
 //= require controllers.js
