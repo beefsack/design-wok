@@ -6,8 +6,6 @@
     = csrf_meta_tags
   %body
     %div#session{ 'ng-controller' => 'SessionCtrl' }
-      %div
-        %a{ 'ng-click' => 'test()' } Test ajax
       %div#session-session{ 'ng-show' => 'isLoggedIn' }
         Logged in as {{username}}
         %a{ 'ng-click' => 'logOut()' } Log out

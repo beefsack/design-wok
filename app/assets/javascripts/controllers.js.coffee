@@ -86,12 +86,6 @@ class @SessionCtrl
       $scope.email = undefined
       $scope.password = undefined
       window.location.href = '#'
-    $scope.test = ->
-      $http.get('/users/testuser',
-        headers:
-          Authorization: SessionCtrl.basicAuthHeaderValue()
-      ).success (data) ->
-        console.log data
     # Set static values and cookie when scope values changes
     $scope.$watch 'username', ->
       SessionCtrl.username = $scope.username
