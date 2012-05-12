@@ -6,8 +6,9 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 # Database
-gem "mongoid"
-gem "bson_ext"
+gem 'mongoid'
+gem 'bson_ext'
+gem 'mongoid_denormalize'
 
 gem 'json'
 

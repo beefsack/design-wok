@@ -48,7 +48,7 @@ class User
   # Validators
   validates :username, :uniqueness => true, :length => { :minimum => 2 }
 
-  # Make sure a token is created
+  # Callbacks
   before_save :ensure_authentication_token
 
   # Relations

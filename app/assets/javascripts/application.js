@@ -11,9 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree ../partials
-//= require html5shiv.js
+//= require modernizr-2.5.3.js
 //= require jquery-1.7.2.js
-//= require angular-1.0.0rc6.js
+//= require angular-1.0.0rc7.js
 //= require base64.js
 //= require app.js
 //= require services.js
