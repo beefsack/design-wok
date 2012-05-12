@@ -31,7 +31,7 @@ class @EditInPlaceCtrl
 
 class @AccountCtrl
   $inject: [ '$scope', '$http' ]
-  constructor: ($scope, $http, $route) ->
+  constructor: ($scope, $http) ->
     $scope.loaded = false
     $scope.updateApiRootNode = 'user'
     $http.get("/users/me",
@@ -43,6 +43,18 @@ class @AccountCtrl
       $scope.loaded = true
     $scope.$watch 'username', ->
       $scope.updateApiUrl = "/users/#{$scope.username}"
+
+class @AccountRegisterCtrl
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http) ->
+    $scope.register = (user) ->
+      $http.post('/users',
+        user:
+          username: user.username
+          email: user.email
+          password: user.password
+      ).success ->
+        window.location.href = '#'
 
 class @UserShowCtrl
   $inject: [ '$scope', '$http', '$route' ]
@@ -65,7 +77,7 @@ class @SessionCtrl
         # Set local values
         $scope.username = data.user.username
         $scope.authentication_token = data.user.authentication_token
-        window.location.reload false
+        window.location.href = '#'
       )
     $scope.logOut = ->
       # Clear local values
@@ -73,7 +85,7 @@ class @SessionCtrl
       $scope.authentication_token = undefined
       $scope.email = undefined
       $scope.password = undefined
-      window.location.href = '/'
+      window.location.href = '#'
     $scope.test = ->
       $http.get('/users/testuser',
         headers:

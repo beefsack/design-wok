@@ -1,0 +1,15 @@
+%h1 This is where you register an account.
+%form
+  %div
+    %label{ :for => 'username' } Username:
+    %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
+  %div
+    %label{ :for => 'email' } Email:
+    %input#username{ type: :email, 'ng-model' => 'user.email', required: true }
+  %div
+    %label{ :for => 'password' } Password:
+    %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
+  %div
+    %label{ :for => 'passwordRepeat' } Password again:
+    %input#passwordRepeat{ type: :password, 'ng-model' => 'user.passwordRepeat', required: true, 'ng-minlength' => 8 }
+  %input{ type: :submit, value: 'Register now', 'ng-click' => 'register(user)' }

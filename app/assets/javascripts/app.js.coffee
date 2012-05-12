@@ -15,6 +15,9 @@ angular.module('designWok', [
   $routeProvider.when '/design',
     template: 'assets/design.html'
     controller: DesignCtrl
+  $routeProvider.when '/account/register',
+    template: 'assets/account/register.html'
+    controller: AccountRegisterCtrl
   $routeProvider.when '/account',
     template: 'assets/account.html'
     controller: AccountCtrl
