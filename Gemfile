@@ -17,7 +17,6 @@ gem 'json'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'haml'
   gem 'haml_assets'
   gem 'formtastic'
 
@@ -28,6 +27,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
