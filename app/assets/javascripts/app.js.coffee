@@ -6,25 +6,27 @@ angular.module('designWok', [
   'designWok.services'
   'designWok.directives'
 ]).config(['$routeProvider', ($routeProvider) ->
-  $routeProvider.when '/user/:username',
+  $routeProvider.when '/:locale/user/:username',
     template: 'assets/user/show.html'
     controller: UserShowCtrl
-  $routeProvider.when '/discover',
+  $routeProvider.when '/:locale/discover',
     template: 'assets/discover.html'
     controller: DiscoverCtrl
-  $routeProvider.when '/design',
+  $routeProvider.when '/:locale/design',
     template: 'assets/design.html'
     controller: DesignCtrl
-  $routeProvider.when '/account/register',
+  $routeProvider.when '/:locale/account/register',
     template: 'assets/account/register.html'
     controller: AccountRegisterCtrl
-  $routeProvider.when '/account/confirm/:confirmationToken',
+  $routeProvider.when '/:locale/account/confirm/:confirmationToken',
     template: 'assets/account/confirm.html'
     controller: AccountConfirmCtrl
-  $routeProvider.when '/account',
+  $routeProvider.when '/:locale/account',
     template: 'assets/account.html'
     controller: AccountCtrl
-  $routeProvider.otherwise
+  $routeProvider.when '/'
+    redirectTo: 'cn'
+  $routeProvider.when '/:locale',
     template: 'assets/home.html'
     controller: HomeCtrl
 ]).config(['$httpProvider', ($httpProvider) ->

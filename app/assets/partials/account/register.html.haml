@@ -2,8 +2,9 @@
   .page-header
     %h1
       Register
-      %small Create an account to buy or sell designs
+      %small an account to buy or sell designs
   .row-fluid
+    .span1
     .register-user-types.span5
       .register-user-type.well
         .row-fluid{ 'ng-click' => 'user.type = "buyer"' }
@@ -19,33 +20,33 @@
           .span11
             %h2 I am a designer
             I want to create a portfolio to showcase my work, sell my current designs, enter competitions, and maybe let potential clients to contact me for custom work
-    .register-user-details.span7
+    .register-user-details.span5
       .control-group
         %label.control-label{ :for => 'username' } Username
         .controls
           .input-prepend
-            %span.add-on
+            %span.add-on>
               .icon-user
             %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
       .control-group
         %label.control-label{ :for => 'email' } Email address
         .controls
           .input-prepend
-            %span.add-on
+            %span.add-on>
               .icon-envelope
             %input#email{ type: :email, 'ng-model' => 'user.email', required: true }
       .control-group
         %label.control-label{ :for => 'password' } Password
         .controls
           .input-prepend
-            %span.add-on
+            %span.add-on>
               .icon-lock
             %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
       .control-group
         %label.control-label{ :for => 'passwordConfirmation' } Password confirmation
         .controls
           .input-prepend
-            %span.add-on
+            %span.add-on>
               .icon-lock
             %input#passwordConfirmation{ type: :password, 'ng-model' => 'user.passwordConfirmation', required: true, 'ng-minlength' => 8 }
       .form-actions

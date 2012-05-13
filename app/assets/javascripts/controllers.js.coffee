@@ -3,16 +3,19 @@
 class @HomeCtrl
   $inject: [ '$scope' ]
   constructor: ($scope) ->
+    $scope.application.category = null
     $scope.application.subTitle = 'Home'
 
 class @DiscoverCtrl
   $inject: [ '$scope' ]
   constructor: ($scope) ->
+    $scope.application.category = 'discover'
     $scope.application.subTitle = 'Discover designs'
 
 class @DesignCtrl
   $inject: [ '$scope' ]
   constructor: ($scope) ->
+    $scope.application.category = 'design'
     $scope.application.subTitle = 'Sell designs'
 
 class @EditInPlaceCtrl
@@ -38,6 +41,7 @@ class @EditInPlaceCtrl
 class @AccountCtrl
   $inject: [ '$scope', '$http' ]
   constructor: ($scope, $http) ->
+    $scope.application.category = 'myAccount'
     $scope.application.subTitle = 'My account'
     $scope.loaded = false
     $scope.updateApiRootNode = 'user'
@@ -54,6 +58,7 @@ class @AccountCtrl
 class @AccountRegisterCtrl
   $inject: [ '$scope', '$http' ]
   constructor: ($scope, $http) ->
+    $scope.application.category = 'myAccount'
     $scope.application.subTitle = 'Register'
     $scope.register = (user) ->
       $http.post('/users',
@@ -65,25 +70,26 @@ class @AccountRegisterCtrl
         window.location.href = '#'
 
 class @AccountConfirmCtrl
-  $inject: [ '$scope', '$http', '$browser', '$route' ]
-  constructor: ($scope, $http, $browser, $route) ->
+  $inject: [ '$scope', '$http', '$browser', '$routeParams' ]
+  constructor: ($scope, $http, $browser, $routeParams) ->
     $http.post('/users/confirm', {
-      confirmation_token: $route.current.params.confirmationToken
+      confirmation_token: $routeParams.confirmationToken
     }).success (data) ->
       $browser.cookies 'username', data.user.username
       $browser.cookies 'authentication_token', data.user.authentication_token
       window.location.href = '/'
 
 class @UserShowCtrl
-  $inject: [ '$scope', '$http', '$route' ]
-  constructor: ($scope, $http, $route) ->
-    $http.get("/users/#{$route.current.params.username}").success (data) ->
+  $inject: [ '$scope', '$http', '$routeParams' ]
+  constructor: ($scope, $http, $routeParams) ->
+    $http.get("/users/#{$routeParams.username}").success (data) ->
       $scope.username = data.user.username
 
 class @ApplicationCtrl
-  $inject: ['$scope', '$http', '$browser']
-  constructor: ($scope, $http, $browser) ->
+  $inject: ['$scope', '$http', '$browser', '$routeParams']
+  constructor: ($scope, $http, $browser, $routeParams) ->
     $scope.application =
+      category: null
       subTitle: 'Home'
       session: {}
     $scope.application.session.logIn = (email, password) ->
@@ -125,3 +131,6 @@ class @ApplicationCtrl
     $scope.application.session.username = cookies.username
     $scope.application.session.authentication_token =
       cookies.authentication_token
+    # Set the locale
+    $scope.$on '$afterRouteChange', ->
+      $scope.application.locale = $routeParams.locale

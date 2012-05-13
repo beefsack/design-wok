@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree ../partials
+//= require_tree ./lang
 //= require modernizr-2.5.3.js
 //= require jquery-1.7.2.js
 //= require base64.js

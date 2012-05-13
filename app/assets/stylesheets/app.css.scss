@@ -17,8 +17,8 @@
   background-color: yellow;
 }
 
-body > .container {
-  margin-top: 100px;
+body {
+  padding-top: 60px;
 }
 
 .register-page-header {
@@ -31,4 +31,16 @@ body > .container {
 
 .register-user-details {
   padding-top: 25px;
+}
+
+.login-form {
+  .input-prepend {
+    display: inline-block;
+  }
+  .sign-in-button {
+    display: inline-block;
+    input {
+      margin-top: 0;
+    }
+  }
 }

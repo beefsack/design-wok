@@ -1,7 +1,7 @@
 !!!
 %html{ :class => 'ng-app:designWok', :id => 'ng-app', 'ng-app' => 'designWok', 'xmlns:ng' => 'http://angularjs.org', 'ng-controller' => 'ApplicationCtrl' }
   %head
-    %title{ 'ng-bind-template' => 'Design Wok - {{application.subTitle}}' } Design Wok
+    %title{ 'ng-bind-template' => '{{\'business_name\'|t}} - {{application.subTitle}}' } {{'business_name'|t}}
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
@@ -9,28 +9,35 @@
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          %a.brand{ href: '#' } DesignWok
+          %a.brand{ href: '#/{{application.locale}}/' } {{'business_name'|t}}
           %ul.nav
-            %li
-              %a{ href: '#/discover' }
+            %li{ 'ng-class' => "{true:'active'}[application.category=='discover']" }
+              %a{ href: '#/{{application.locale}}/discover' }
                 .icon-eye-open.icon-white
-                Discover designs
-            %li
-              %a{ href: '#/design' }
+                {{'navigation.discover_designs'|t}}
+            %li{ 'ng-class' => "{true:'active'}[application.category=='design']" }
+              %a{ href: '#/{{application.locale}}/design' }
                 .icon-shopping-cart.icon-white
-                Sell designs
+                {{'navigation.sell_designs'|t}}
           %ul.nav.pull-right{ 'ng-hide' => 'application.session.isLoggedIn' }
             %li
-              %a{ href: '#/account/register' } or register
-          %form.navbar-form.pull-right{ 'ng-hide' => 'application.session.isLoggedIn', 'ng-submit' => 'application.session.logIn(authUser.email, authUser.password)' }
-            %input.span2{ 'ng-model' => 'authUser.email', placeholder: 'email' }
-            %input.span2{ 'ng-model' => 'authUser.password', type: 'password', placeholder: 'password' }
-            %input{ :type => 'submit', :value => 'Sign in' }
+              %a{ href: '#/{{application.locale}}/account/register' } {{'navigation.session.or_register'|t}}
+          %form.navbar-form.pull-right.login-form{ 'ng-hide' => 'application.session.isLoggedIn', 'ng-submit' => 'application.session.logIn(authUser.email, authUser.password);authUser.email=null;authUser.password=null;' }
+            .input-prepend
+              %span.add-on>
+                .icon-envelope
+              %input.input-medium{ type: :email, 'ng-model' => 'authUser.email', placeholder: '{{\'navigation.session.email\'|t}}' }
+            .input-prepend
+              %span.add-on>
+                .icon-lock
+              %input.input-medium{ 'ng-model' => 'authUser.password', type: :password, placeholder: '{{\'navigation.session.password\'|t}}' }
+            .sign-in-button
+              %input{ :type => 'submit', :value => "{{'navigation.session.sign_in'|t}}" }
           %ul.nav.pull-right{ 'ng-show' => 'application.session.isLoggedIn' }
             %li
-              %a{ href: '#/account' } My account
+              %a{ href: '#/{{application.locale}}/account' } {{'navigation.session.my_account'|t}}
             %li
-              %a{ 'ng-click' => 'application.session.logOut()' } Sign out ({{application.session.username}})
+              %a{ 'ng-click' => 'application.session.logOut()' } {{'navigation.session.sign_out'|t}} ({{application.session.username}})
     -# Body
     .container
       %div{ 'ng-view' => true }
