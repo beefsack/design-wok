@@ -1,14 +1,14 @@
 !!!
-%html{ :class => 'ng-app:designWok', :id => 'ng-app', 'ng-app' => 'designWok', 'xmlns:ng' => 'http://angularjs.org' }
+%html{ :class => 'ng-app:designWok', :id => 'ng-app', 'ng-app' => 'designWok', 'xmlns:ng' => 'http://angularjs.org', 'ng-controller' => 'ApplicationCtrl' }
   %head
-    %title Design Wok
+    %title{ 'ng-bind-template' => 'Design Wok - {{pageTitle}}' } Design Wok
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
     -# Header
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container{ 'ng-controller' => 'SessionCtrl' }
+        .container
           %a.brand{ href: '#' } DesignWok
           %ul.nav
             %li
@@ -22,9 +22,9 @@
           %ul.nav.pull-right{ 'ng-hide' => 'isLoggedIn' }
             %li
               %a{ href: '#/account/register' } or register
-          %form.navbar-form.pull-right{ 'ng-hide' => 'isLoggedIn', 'ng-submit' => 'logIn(email, password)' }
-            %input.span2{ 'ng-model' => 'email', placeholder: 'email' }
-            %input.span2{ 'ng-model' => 'password', type: 'password', placeholder: 'password' }
+          %form.navbar-form.pull-right{ 'ng-hide' => 'isLoggedIn', 'ng-submit' => 'logIn(authUser.email, authUser.password)' }
+            %input.span2{ 'ng-model' => 'authUser.email', placeholder: 'email' }
+            %input.span2{ 'ng-model' => 'authUser.password', type: 'password', placeholder: 'password' }
             %input{ :type => 'submit', :value => 'Sign in' }
           %ul.nav.pull-right{ 'ng-show' => 'isLoggedIn' }
             %li
