@@ -1,23 +1,23 @@
 'use strict'
 
 class @HomeCtrl
-  $inject: [ '$rootScope' ]
-  constructor: ($rootScope) ->
-    $rootScope.pageTitle = 'Home'
+  $inject: [ '$scope' ]
+  constructor: ($scope) ->
+    $scope.application.subTitle = 'Home'
 
 class @DiscoverCtrl
-  $inject: [ '$rootScope' ]
-  constructor: ($rootScope) ->
-    $rootScope.pageTitle = 'Discover designs'
+  $inject: [ '$scope' ]
+  constructor: ($scope) ->
+    $scope.application.subTitle = 'Discover designs'
 
 class @DesignCtrl
-  $inject: [ '$rootScope' ]
-  constructor: ($rootScope) ->
-    $rootScope.pageTitle = 'Sell designs'
+  $inject: [ '$scope' ]
+  constructor: ($scope) ->
+    $scope.application.subTitle = 'Sell designs'
 
 class @EditInPlaceCtrl
-  $inject: [ '$scope', '$rootScope', '$http' ]
-  constructor: ($scope, $rootScope, $http) ->
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http) ->
     $scope.editing = false
     $scope.edit = ->
       $scope.value = $scope.$parent[$scope.field]
@@ -28,7 +28,7 @@ class @EditInPlaceCtrl
       data[$scope.$parent.updateApiRootNode][$scope.field] = value
       $http.put($scope.$parent.updateApiUrl, data,
         headers:
-          Authorization: $rootScope.basicAuthHeaderValue()
+          Authorization: $scope.application.session.basicAuthHeaderValue()
       ).success ->
         $scope.$parent[$scope.field] = value
         $scope.cancel()
@@ -36,13 +36,14 @@ class @EditInPlaceCtrl
       $scope.editing = false
 
 class @AccountCtrl
-  $inject: [ '$scope', '$rootScope', '$http' ]
-  constructor: ($scope, $rootScope, $http) ->
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http) ->
+    $scope.application.subTitle = 'My account'
     $scope.loaded = false
     $scope.updateApiRootNode = 'user'
     $http.get("/users/me",
       headers:
-        Authorization: $rootScope.basicAuthHeaderValue()
+        Authorization: $scope.application.session.basicAuthHeaderValue()
     ).success (data) ->
       $scope.username = data.user.username
       $scope.email = data.user.email
@@ -51,9 +52,9 @@ class @AccountCtrl
       $scope.updateApiUrl = "/users/#{$scope.username}"
 
 class @AccountRegisterCtrl
-  $inject: [ '$scope', '$rootScope', '$http' ]
-  constructor: ($scope, $rootScope, $http) ->
-    $rootScope.pageTitle = 'Register'
+  $inject: [ '$scope', '$http' ]
+  constructor: ($scope, $http) ->
+    $scope.application.subTitle = 'Register'
     $scope.register = (user) ->
       $http.post('/users',
         user:
@@ -80,40 +81,47 @@ class @UserShowCtrl
       $scope.username = data.user.username
 
 class @ApplicationCtrl
-  $inject: ['$rootScope', '$http', '$browser']
-  constructor: ($scope, $rootScope, $http, $browser) ->
-    $rootScope.logIn = (email, password) ->
+  $inject: ['$scope', '$http', '$browser']
+  constructor: ($scope, $http, $browser) ->
+    $scope.application =
+      subTitle: 'Home'
+      session: {}
+    $scope.application.session.logIn = (email, password) ->
       # Clear current auth if there is any
-      $rootScope.username = undefined
-      $rootScope.authentication_token = undefined
+      $scope.application.session.username = undefined
+      $scope.application.session.authentication_token = undefined
       authString = Base64.encode "#{email}:#{password}"
       $http.get('/users/me'
         headers:
           Authorization: "Basic #{authString}"
       ).success (data) ->
         # Set local values
-        $rootScope.username = data.user.username
-        $rootScope.authentication_token = data.user.authentication_token
+        $scope.application.session.username = data.user.username
+        $scope.application.session.authentication_token =
+          data.user.authentication_token
         window.location.href = '#'
-    $rootScope.logOut = ->
+    $scope.application.session.logOut = ->
       # Clear local values
-      $rootScope.username = undefined
-      $rootScope.authentication_token = undefined
-      $rootScope.email = undefined
-      $rootScope.password = undefined
+      $scope.application.session.username = undefined
+      $scope.application.session.authentication_token = undefined
+      $scope.application.session.email = undefined
+      $scope.application.session.password = undefined
       window.location.href = '#'
-    $rootScope.basicAuthHeaderValue = (username, password) ->
-      username = username || $rootScope.authentication_token || ''
+    $scope.application.session.basicAuthHeaderValue = (username, password) ->
+      username = username || $scope.application.session.authentication_token || ''
       password = password || ''
       return null if username is '' and password is ''
       'Basic ' + Base64.encode "#{username}:#{password}"
-    # Set static values and cookie when rootScope values changes
-    $rootScope.$watch 'username', ->
-      $browser.cookies 'username', $rootScope.username
-    $rootScope.$watch 'authentication_token', ->
-      $browser.cookies 'authentication_token', $rootScope.authentication_token
-      $rootScope.isLoggedIn = $rootScope.authentication_token?
+    # Set static values and cookie when scope values changes
+    $scope.$watch 'application.session.username', ->
+      $browser.cookies 'username', $scope.application.session.username
+    $scope.$watch 'application.session.authentication_token', ->
+      $browser.cookies 'authentication_token',
+        $scope.application.session.authentication_token
+      $scope.application.session.isLoggedIn =
+        $scope.application.session.authentication_token?
     # Set from cookies on initial display
     cookies = $browser.cookies()
-    $rootScope.username = cookies.username
-    $rootScope.authentication_token = cookies.authentication_token
+    $scope.application.session.username = cookies.username
+    $scope.application.session.authentication_token =
+      cookies.authentication_token

@@ -1,7 +1,7 @@
 !!!
 %html{ :class => 'ng-app:designWok', :id => 'ng-app', 'ng-app' => 'designWok', 'xmlns:ng' => 'http://angularjs.org', 'ng-controller' => 'ApplicationCtrl' }
   %head
-    %title{ 'ng-bind-template' => 'Design Wok - {{pageTitle}}' } Design Wok
+    %title{ 'ng-bind-template' => 'Design Wok - {{application.subTitle}}' } Design Wok
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
@@ -19,18 +19,18 @@
               %a{ href: '#/design' }
                 .icon-shopping-cart.icon-white
                 Sell designs
-          %ul.nav.pull-right{ 'ng-hide' => 'isLoggedIn' }
+          %ul.nav.pull-right{ 'ng-hide' => 'application.session.isLoggedIn' }
             %li
               %a{ href: '#/account/register' } or register
-          %form.navbar-form.pull-right{ 'ng-hide' => 'isLoggedIn', 'ng-submit' => 'logIn(authUser.email, authUser.password)' }
+          %form.navbar-form.pull-right{ 'ng-hide' => 'application.session.isLoggedIn', 'ng-submit' => 'application.session.logIn(authUser.email, authUser.password)' }
             %input.span2{ 'ng-model' => 'authUser.email', placeholder: 'email' }
             %input.span2{ 'ng-model' => 'authUser.password', type: 'password', placeholder: 'password' }
             %input{ :type => 'submit', :value => 'Sign in' }
-          %ul.nav.pull-right{ 'ng-show' => 'isLoggedIn' }
+          %ul.nav.pull-right{ 'ng-show' => 'application.session.isLoggedIn' }
             %li
               %a{ href: '#/account' } My account
             %li
-              %a{ 'ng-click' => 'logOut()' } Sign out ({{username}})
+              %a{ 'ng-click' => 'application.session.logOut()' } Sign out ({{application.session.username}})
     -# Body
     .container
       %div{ 'ng-view' => true }
