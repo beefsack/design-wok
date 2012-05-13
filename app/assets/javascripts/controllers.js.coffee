@@ -4,19 +4,19 @@ class @HomeCtrl
   $inject: [ '$scope' ]
   constructor: ($scope) ->
     $scope.application.category = null
-    $scope.application.subTitle = 'Home'
+    $scope.application.subTitle = 'home_page.title'
 
 class @DiscoverCtrl
   $inject: [ '$scope' ]
   constructor: ($scope) ->
     $scope.application.category = 'discover'
-    $scope.application.subTitle = 'Discover designs'
+    $scope.application.subTitle = 'discover_page.title' # The lang offset
 
 class @DesignCtrl
   $inject: [ '$scope' ]
   constructor: ($scope) ->
     $scope.application.category = 'design'
-    $scope.application.subTitle = 'Sell designs'
+    $scope.application.subTitle = 'design_page.title' # The lang offset
 
 class @EditInPlaceCtrl
   $inject: [ '$scope', '$http' ]

@@ -1,8 +1,8 @@
 %form.form-horizontal{ 'ng-submit' => 'register(user)' }
   .page-header
     %h1
-      Register
-      %small an account to buy or sell designs
+      {{'register_page.title'|t}}
+      %small {{'register_page.subtitle'|t}}
   .row-fluid
     .span1
     .register-user-types.span5
@@ -11,43 +11,43 @@
           .span1
             %input{ type: :radio, 'ng-model' => 'user.type', value: 'buyer' }
           .span11
-            %h2 I want to buy designs
-            I want to shop through pre-made designs, start design competitions, browse through designers' portfolios and contact a designers directly for custom work
+            %h2 {{'register_page.buyer_well.title'|t}}
+            {{'register_page.buyer_well.text'|t}}
       .register-user-type.well
         .row-fluid{ 'ng-click' => 'user.type = "designer"' }
           .span1
             %input{ type: :radio, 'ng-model' => 'user.type', value: 'designer' }
           .span11
-            %h2 I am a designer
-            I want to create a portfolio to showcase my work, sell my current designs, enter competitions, and maybe let potential clients to contact me for custom work
+            %h2 {{'register_page.designer_well.title'|t}}
+            {{'register_page.designer_well.text'|t}}
     .register-user-details.span5
       .control-group
-        %label.control-label{ :for => 'username' } Username
+        %label.control-label{ :for => 'username' } {{'register_page.form.username'|t}}
         .controls
           .input-prepend
             %span.add-on>
               .icon-user
             %input#username{ 'ng-model' => 'user.username', required: true, 'ng-minlength' => 8 }
       .control-group
-        %label.control-label{ :for => 'email' } Email address
+        %label.control-label{ :for => 'email' } {{'register_page.form.email'|t}}
         .controls
           .input-prepend
             %span.add-on>
               .icon-envelope
             %input#email{ type: :email, 'ng-model' => 'user.email', required: true }
       .control-group
-        %label.control-label{ :for => 'password' } Password
+        %label.control-label{ :for => 'password' } {{'register_page.form.password'|t}}
         .controls
           .input-prepend
             %span.add-on>
               .icon-lock
             %input#password{ type: :password, 'ng-model' => 'user.password', required: true, 'ng-minlength' => 8 }
       .control-group
-        %label.control-label{ :for => 'passwordConfirmation' } Password confirmation
+        %label.control-label{ :for => 'passwordConfirmation' } {{'register_page.form.password_confirmation'|t}}
         .controls
           .input-prepend
             %span.add-on>
               .icon-lock
             %input#passwordConfirmation{ type: :password, 'ng-model' => 'user.passwordConfirmation', required: true, 'ng-minlength' => 8 }
       .form-actions
-        %input.btn.btn-primary{ type: :submit, value: 'Register now' }
+        %input.btn.btn-primary{ type: :submit, value: '{{"register_page.form.register_button"|t}}' }

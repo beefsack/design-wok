@@ -1,7 +1,7 @@
 !!!
 %html{ :class => 'ng-app:designWok', :id => 'ng-app', 'ng-app' => 'designWok', 'xmlns:ng' => 'http://angularjs.org', 'ng-controller' => 'ApplicationCtrl' }
   %head
-    %title{ 'ng-bind-template' => '{{\'business_name\'|t}} - {{application.subTitle}}' } {{'business_name'|t}}
+    %title{ 'ng-bind-template' => '{{\'business_name\'|t}} - {{application.subTitle|t}}' } {{'business_name'|t}}
     = stylesheet_link_tag 'application', :media => 'all'
     = csrf_meta_tags
   %body
