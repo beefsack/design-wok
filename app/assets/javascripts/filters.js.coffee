@@ -7,5 +7,3 @@ angular.module('designWok.filters', []).
       ptr = lang[this.application.locale]
       ptr = ptr[piece] for piece in pieces when ptr?
       return ptr
-      console.log input
-      return 'fart'
